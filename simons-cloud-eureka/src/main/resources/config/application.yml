@@ -1,0 +1,29 @@
+logging:
+ config: classpath:log4j2.yml
+ 
+spring:
+ application:
+    name: register-service
+ banner: 
+    location: classpath:config/buddha.txt
+ security: 
+    user:
+      name: user
+      password: password123
+    
+server:
+  port: 8761
+  servlet:
+    context-path: /register-service
+
+eureka:
+#  server:
+#    enable-self-preservation: false
+#    eviction-interval-timer-in-ms: 60000
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://user:password123@${eureka.instance.hostname}:${server.port}/eureka
